@@ -20,10 +20,20 @@ def remove_handles(tweet):
     # Remove handles
 
     # Attempt 1 : Can remove anything that starts with @, But this breaks email address
-    # tweet = re.sub(r'@\w+',repl='', string=tweet) # starts with @, follows by (a-z), (A-Z), [0-9], _ and + means one or more occurrence
+    # tweet = re.sub(r'@\w+',repl='', string=tweet)
+    # starts with @, follows by (a-z), (A-Z), [0-9], _ and + means one or more occurrence
 
     # Attempt 2 : Use a negative look behind
-    tweet = re.sub(r'(?<!\w)@\w+', tweet) # Negative lookbehind - (?<!....)
+    tweet = re.sub(pattern=r'(?<!\w)@\w+',repl='',string=tweet)
+    # Negative lookbehind - (?<!...)
+
+    return tweet
+
+def remove_hyperlinks(tweet):
+
+    tweet = re.sub(pattern=r'https?://\S+',repl='',string=tweet)
+    # \S+ means it matches one or more occurrence of any non whitespace characters
+    # ? means the preceding character is optional.
 
     return tweet
 
@@ -52,11 +62,20 @@ if __name__ == '__main__':
 
     tweet_with_handle = [tweet for tweet in all_tweet if re.search('@\w+', tweet)]
 
-    processed_tweet = {proc_tweet : remove_handles(proc_tweet) for proc_tweet in tweet_with_handle}
+    tweet_without_handles = {proc_tweet : remove_handles(proc_tweet) for proc_tweet in tweet_with_handle}
 
-    for k, v in processed_tweet.items():
+    for k, v in list(tweet_without_handles.items())[:3]:
 
+        print('Tweet Preprocessing : Removing handles')
         print(f'{k}:{v}\n')
+
+    tweet_with_hyperlinks = [tweet for tweet in all_tweet if re.search('https?://\S+', tweet)]
+
+    tweet_without_hyperlinks = {proc_tweet: remove_hyperlinks(proc_tweet) for proc_tweet in tweet_with_hyperlinks}
+
+    for k, v in list(tweet_without_hyperlinks.items())[:3]:
+        print('Tweet Preprocessing : Removing hyperlinks')
+        print(f'{k}: {v}\n')
 
 
 
