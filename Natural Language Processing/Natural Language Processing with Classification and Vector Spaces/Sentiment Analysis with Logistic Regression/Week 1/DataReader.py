@@ -1,4 +1,6 @@
+import os
 import nltk
+
 from nltk.corpus import twitter_samples
 
 def get_tweet_data(download=False):
@@ -11,3 +13,12 @@ def get_tweet_data(download=False):
     all_tweets = twitter_samples.strings()
 
     return  positive_tweets, negative_tweets, all_tweets
+
+
+def download_metadata():
+
+    # Stopwords
+    nltk.download('stopwords',
+                  download_dir=os.path.join(os.getcwd(),'Data'))
+
+    return
