@@ -42,9 +42,19 @@ def word_freq_corpus_builder():
 
     return freq_corpus
 
-def compute_features(tweet):
-    # to find the feature vector
-    return
+def compute_features(tweet, freq_corpus):
+    # Function for feature reduction for a single tweet
+    processed_tweet = stem_tokens(tokenize_tweet(process_tweets(tweet)))
+
+    n_positive_token_weight = [freq_corpus[word]['Positive'] for word in processed_tweet]
+    n_negative_token_weight = [freq_corpus[word]['Negative'] for word in processed_tweet]
+
+    n_positive_sum = sum(n_positive_token_weight)
+    n_negative_sum = sum(n_negative_token_weight)
+
+    tweet_feature = [1, n_positive_sum, n_negative_sum]
+
+    return tweet_feature
 
 
 
@@ -53,3 +63,6 @@ if __name__ == '__main__':
     freq_corpus = word_freq_corpus_builder()
 
     print(freq_corpus)
+    positive_tweets, negative_tweets, all_tweets = get_tweet_data()
+
+    print(f'{all_tweets[0]} : {compute_features(all_tweets[0], freq_corpus=freq_corpus)}')
