@@ -42,6 +42,12 @@ def word_freq_corpus_builder():
 
     return freq_corpus
 
+def compute_features(tweet):
+    # to find the feature vector
+    return
+
+
+
 if __name__ == '__main__':
 
     freq_corpus = word_freq_corpus_builder()
