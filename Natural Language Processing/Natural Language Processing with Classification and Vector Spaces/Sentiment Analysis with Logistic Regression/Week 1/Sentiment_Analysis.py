@@ -7,7 +7,8 @@ from Functions.FeatureEngineering import (word_freq_corpus_builder,
                                           compute_features,
                                           stem_tokens,
                                           tokenize_tweet,
-                                          process_tweets)
+                                          process_tweets,
+                                          tweet_preprocessing)
 
 def main():
     positive_tweets, negative_tweets, all_tweets = get_tweet_data()
@@ -21,7 +22,7 @@ def main():
 
     for tweet in tweets:
 
-        processed_tweet = stem_tokens(tokenize_tweet(process_tweets(tweet)))
+        processed_tweet = tweet_preprocessing(tweet)
         filtered_tweet = [word for word in processed_tweet if word in freq_corpus.keys()]
 
         tweet_vector = compute_features(tweet=filtered_tweet ,
@@ -36,6 +37,8 @@ def main():
 if __name__ == '__main__':
 
     feat_vector = main()
+
+    print(feat_vector)
 
 
 

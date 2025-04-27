@@ -42,12 +42,18 @@ def word_freq_corpus_builder():
 
     return freq_corpus
 
+def tweet_preprocessing(tweet):
+
+    processed_tweet = stem_tokens(tokenize_tweet(process_tweets(tweet)))
+
+    return processed_tweet
+
 def compute_features(tweet,
                      freq_corpus,
                      process_tweet=True):
     # Function for feature reduction for a single tweet
     if process_tweet:
-        processed_tweet = stem_tokens(tokenize_tweet(process_tweets(tweet)))
+        processed_tweet = tweet_preprocessing(tweet)
     else:
         processed_tweet = tweet
 
