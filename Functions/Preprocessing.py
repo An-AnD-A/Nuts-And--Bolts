@@ -7,7 +7,7 @@ from nltk.tokenize import TweetTokenizer
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 
-from DataReader import get_tweet_data
+from Functions.DataReader import get_tweet_data
 
 # PreProcessing steps
 

@@ -1,6 +1,6 @@
-from DataReader import get_tweet_data
+from Functions.DataReader import get_tweet_data
 
-from Preprocessing import process_tweets, tokenize_tweet, stem_tokens
+from Functions.Preprocessing import process_tweets, tokenize_tweet, stem_tokens
 
 def token_corpus_check(token, freq_corpus):
 
@@ -42,9 +42,20 @@ def word_freq_corpus_builder():
 
     return freq_corpus
 
-def compute_features(tweet, freq_corpus):
-    # Function for feature reduction for a single tweet
+def tweet_preprocessing(tweet):
+
     processed_tweet = stem_tokens(tokenize_tweet(process_tweets(tweet)))
+
+    return processed_tweet
+
+def compute_features(tweet,
+                     freq_corpus,
+                     process_tweet=True):
+    # Function for feature reduction for a single tweet
+    if process_tweet:
+        processed_tweet = tweet_preprocessing(tweet)
+    else:
+        processed_tweet = tweet
 
     n_positive_token_weight = [freq_corpus[word]['Positive'] for word in processed_tweet]
     n_negative_token_weight = [freq_corpus[word]['Negative'] for word in processed_tweet]
@@ -65,4 +76,4 @@ if __name__ == '__main__':
     print(freq_corpus)
     positive_tweets, negative_tweets, all_tweets = get_tweet_data()
 
-    print(f'{all_tweets[0]} : {compute_features(all_tweets[0], freq_corpus=freq_corpus)}')
+    print(f'{all_tweets[1]} : {compute_features(all_tweets[1], freq_corpus=freq_corpus)}')
