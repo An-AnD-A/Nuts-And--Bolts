@@ -1,3 +1,5 @@
+import pandas as pd
+
 from Functions.DataReader import get_tweet_data
 
 from Functions.Preprocessing import process_tweets, tokenize_tweet, stem_tokens
@@ -67,6 +69,12 @@ def compute_features(tweet,
 
     return tweet_feature
 
+def word_freq_df(freq_corpus):
+
+    df = pd.DataFrame.from_dict(freq_corpus, orient='index').reset_index()
+    df.rename(columns={'index': 'Word'}, inplace=True)
+    return df
+
 
 
 if __name__ == '__main__':
@@ -77,3 +85,6 @@ if __name__ == '__main__':
     positive_tweets, negative_tweets, all_tweets = get_tweet_data()
 
     print(f'{all_tweets[1]} : {compute_features(all_tweets[1], freq_corpus=freq_corpus)}')
+
+    df = word_freq_df(freq_corpus)
+    print(df)
