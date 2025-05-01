@@ -1,8 +1,8 @@
 import pandas as pd
 
-from Functions.DataReader import get_tweet_data
+from NaturalLanguageProcessing.Functions.DataReader import get_tweet_data
 
-from Functions.Preprocessing import process_tweets, tokenize_tweet, stem_tokens
+from NaturalLanguageProcessing.Functions.Preprocessing import process_tweets, tokenize_tweet, stem_tokens
 
 def token_corpus_check(token, freq_corpus):
 

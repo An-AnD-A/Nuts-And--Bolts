@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from Functions.FeatureEngineering import word_freq_df,word_freq_corpus_builder
+from NaturalLanguageProcessing.Functions.FeatureEngineering import word_freq_df,word_freq_corpus_builder
 
 
 
