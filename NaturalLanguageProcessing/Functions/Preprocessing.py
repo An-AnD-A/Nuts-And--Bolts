@@ -1,13 +1,11 @@
 import re
 import string
-import typing
-import nltk
 
 from nltk.tokenize import TweetTokenizer
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 
-from Functions.DataReader import get_tweet_data
+from NaturalLanguageProcessing.Functions.DataReader import get_tweet_data
 
 # PreProcessing steps
 

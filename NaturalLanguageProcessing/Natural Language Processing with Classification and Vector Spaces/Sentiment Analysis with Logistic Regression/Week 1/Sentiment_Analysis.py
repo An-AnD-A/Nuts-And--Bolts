@@ -1,14 +1,7 @@
-import os
-import nltk
-from nltk.corpus import twitter_samples
-
-from Functions.DataReader import get_tweet_data
-from Functions.FeatureEngineering import (word_freq_corpus_builder,
-                                          compute_features,
-                                          stem_tokens,
-                                          tokenize_tweet,
-                                          process_tweets,
-                                          tweet_preprocessing)
+from NaturalLanguageProcessing.Functions.DataReader import get_tweet_data
+from NaturalLanguageProcessing.Functions.FeatureEngineering import (word_freq_corpus_builder,
+                                                                    compute_features,
+                                                                    tweet_preprocessing)
 
 def main():
     positive_tweets, negative_tweets, all_tweets = get_tweet_data()
