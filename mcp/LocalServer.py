@@ -3,9 +3,9 @@ from mcp.server.fastmcp import FastMCP
 
 mcp = FastMCP(
     name="Local MCP Server",
-    host="0.0.0.0",
-    port=8050,
-    stateless_http=True,
+    host="127.0.0.1",
+    port=8000,
+    # stateless_http=True,
 )
 
 
@@ -23,5 +23,5 @@ def echo(message: str) -> str:
     return f"Echo: {message}"
 
 if __name__ == "__main__":
-    mcp.run(transport='stdio')
+    mcp.run(transport='sse')
     print("Running Local MCP Server...")
